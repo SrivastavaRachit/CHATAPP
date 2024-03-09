@@ -2,7 +2,7 @@ import React from 'react'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { IconButton } from '@mui/material';
 
-const ChatArea = ({props}) => {
+const ChatArea = ({ props }) => {
     return (
         <div className='chatArea-container'>
             <div className='chatArea-header'>
@@ -12,7 +12,7 @@ const ChatArea = ({props}) => {
                     <p className='con-timeStamp'>{props.timeStamp}</p>
                 </div>
                 <IconButton>
-                    <DeleteOutlineIcon/>
+                    <DeleteOutlineIcon />
                 </IconButton>
             </div>
 
