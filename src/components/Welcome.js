@@ -1,4 +1,5 @@
 import React from 'react'
+import './myStyles.css'
 import logo from '../icons/live-chat (1).png'
 
 const Welcome = () => {
