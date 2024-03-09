@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './myStyles.css'
 const ConversationsItem = ({props}) => {
   return (
     <div className='conversation-container'>
