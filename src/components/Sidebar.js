@@ -6,7 +6,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import NightlightIcon from '@mui/icons-material/Nightlight';
-import { IconButton } from '@mui/material';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'; import { IconButton } from '@mui/material';
 
 import SearchIcon from '@mui/icons-material/Search';
 import ConversationsItem from './ConversationsItem';
@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 const Sidebar = () => {
   const navigate = useNavigate();
 
+  const [lightTheme, setLightTheme] = useState(true);
   const [conversations, setConversations] = useState([
     {
       name: "TEST1",
@@ -36,43 +37,48 @@ const Sidebar = () => {
 
   return (
     <div className='sidebar-container'>
-      <div className='sb-header dark'>
+      <div className={'sb-header' + (lightTheme ? "" : " dark")}>
         <div>
           <IconButton>
-            <AccountCircleIcon />
+            <AccountCircleIcon className={'icon' + (lightTheme ? "" : " dark")} />
           </IconButton>
         </div>
 
         <div>
           <IconButton onClick={() => { navigate('users') }}>
-            <PersonAddAlt1Icon />
+            <PersonAddAlt1Icon className={'icon' + (lightTheme ? "" : " dark")} />
           </IconButton>
 
           <IconButton onClick={() => { navigate('groups') }}>
-            <GroupAddIcon />
+            <GroupAddIcon className={'icon' + (lightTheme ? "" : " dark")} />
           </IconButton>
 
           <IconButton onClick={() => { navigate('create-groups') }}>
-            <AddCircleIcon />
+            <AddCircleIcon className={'icon' + (lightTheme ? "" : " dark")} />
           </IconButton>
 
-          <IconButton >
-            <NightlightIcon />
+          <IconButton onClick={() => {
+            setLightTheme((prevValue) => {
+              return !prevValue;
+            });
+          }}>
+            {lightTheme && <NightlightIcon className={'icon' + (lightTheme ? "" : " dark")} />}
+            {!lightTheme && <LightModeOutlinedIcon className={'icon' + (lightTheme ? "" : " dark")} />}
           </IconButton>
         </div>
       </div>
 
-      <div className='sb-search'>
+      <div className={'sb-search' + (lightTheme ? "" : " dark")}>
         <IconButton>
           <SearchIcon />
         </IconButton>
-        <input placeholder='Search' className='search-box' />
+        <input placeholder='Search' className={'search-box' + (lightTheme ? "" : " dark")} />
       </div>
 
-      <div className='sb-conversations'>
+      <div className={'sb-conversations' + (lightTheme ? "" : " dark")}>
         {conversations.map((conversation) => {
           return <ConversationsItem props={conversation}
-            key={conversation.name}/>
+            key={conversation.name} />
         })}
       </div>
     </div>
