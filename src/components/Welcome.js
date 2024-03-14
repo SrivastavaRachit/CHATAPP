@@ -1,11 +1,18 @@
-import React from 'react'
-import './myStyles.css'
-import logo from '../icons/live-chat (1).png'
-import { useSelector } from 'react-redux';
+import React from "react";
+import logo from "../icons/live-chat_512px.png";
+import { useSelector } from "react-redux";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
-const Welcome = () => {
+function Welcome() {
   const lightTheme = useSelector((state) => state.themeKey);
+  const userData = JSON.parse(localStorage.getItem("userData"));
+  console.log(userData);
+  const nav = useNavigate();
+  if (!userData) {
+    console.log("User not Authenticated");
+    nav("/");
+  }
 
   return (
     <div className={"welcome-container" + (lightTheme ? "" : " dark")}>
@@ -14,12 +21,11 @@ const Welcome = () => {
         whileTap={{ scale: 1.05, rotate: 360 }}
         src={logo}
         alt="Logo"
-        className="welcome-logo"
-      />
-      <p>View and text directly to people present
-        in the chat Rooms.</p>
+        className="welcome-logo"/>
+      <b>Hi , {userData.data.name} 👋</b>
+      <p>View and text directly to people present in the chat Rooms.</p>
     </div>
-  )
+  );
 }
 
 export default Welcome;
